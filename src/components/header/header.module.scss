@@ -1,0 +1,11 @@
+@import "../../styles/variables.scss";
+
+.logo-container {
+  width: 100%;
+  height: auto;
+  padding: 35px 72px;
+  color: #f17900;
+  font-size: $font-size-lg;
+  font-family: $font-family-logo;
+  font-weight: 500;
+}

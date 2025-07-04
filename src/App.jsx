@@ -1,3 +1,10 @@
+import { Header, Sidebar } from "./components";
+
 export const App = () => {
-  return <div>Начало проекта</div>;
+  return (
+    <>
+      <Header />
+      <Sidebar />
+    </>
+  );
 };
