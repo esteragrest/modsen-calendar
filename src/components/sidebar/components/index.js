@@ -1,2 +1,2 @@
-export * from "./sidebar-nav-button/SidebarNavButton";
+export * from "./footer/Footer";
 export * from "./user-profile/UserProfile";

@@ -1,4 +1,4 @@
-import { SidebarNavButton, UserProfile } from "./components";
+import { Footer, UserProfile } from "./components";
 import styles from "./sidebar.module.scss";
 
 export const Sidebar = () => {
@@ -9,7 +9,7 @@ export const Sidebar = () => {
         name="Rosalie"
         email="rosalie.rice@gmail.com"
       />
-      <SidebarNavButton />
+      <Footer />
     </div>
   );
 };

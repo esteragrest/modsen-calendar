@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 
+import { SidebarNavButton } from "./sidebar-nav-button/SidebarNavButton";
 import styles from "./user-profile.module.scss";
 
 export const UserProfile = ({ avatar, name, email }) => {
@@ -14,6 +15,7 @@ export const UserProfile = ({ avatar, name, email }) => {
         <p className={styles.name}>Hello {name}</p>
         <p className={styles.email}>{email}</p>
       </div>
+      <SidebarNavButton />
     </div>
   );
 };
