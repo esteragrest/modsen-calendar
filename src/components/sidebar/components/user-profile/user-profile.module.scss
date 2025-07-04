@@ -4,8 +4,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   text-align: center;
-  gap: 10px;
+  gap: 35px;
 }
 
 .avatar-container {
@@ -15,10 +16,9 @@
   border-radius: 50%;
   padding: 10px;
   align-items: center;
-  justify-content: center;
   z-index: 0;
   background-color: $color-background;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, var($color-shadow));
+  box-shadow: 0 4px 12px $color-shadow;
 
   &::before {
     content: "";
@@ -66,7 +66,6 @@
   align-items: center;
   flex-direction: column;
   gap: $space-xs;
-  padding: 35px 0;
 }
 
 .user-info .name {

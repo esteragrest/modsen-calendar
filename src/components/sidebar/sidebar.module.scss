@@ -1,9 +1,11 @@
 .sidebar {
   box-sizing: border-box;
   width: 350px;
-  min-height: 10vh;
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: start;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
   padding: 40px 66px;
+  gap: 30px;
 }

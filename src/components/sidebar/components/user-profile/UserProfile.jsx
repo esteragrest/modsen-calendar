@@ -9,10 +9,10 @@ export const UserProfile = ({ avatar, name, email }) => {
         <div className={styles["avatar"]}>
           <img src={avatar} alt={`${name}`} />
         </div>
-        <div className={styles["user-info"]}>
-          <p className={styles.name}>Hello {name}</p>
-          <p className={styles.email}>{email}</p>
-        </div>
+      </div>
+      <div className={styles["user-info"]}>
+        <p className={styles.name}>Hello {name}</p>
+        <p className={styles.email}>{email}</p>
       </div>
     </div>
   );
