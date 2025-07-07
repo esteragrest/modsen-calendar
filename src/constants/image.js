@@ -6,6 +6,8 @@ import fb from "@/assets/logo-fb.svg";
 import github from "@/assets/logo-github.svg";
 import instagram from "@/assets/logo-instagram.svg";
 import twitter from "@/assets/logo-twitter.svg";
+import nextArrow from "@/assets/next-arrow.svg";
+import prevArrow from "@/assets/prev-arrow.svg";
 
 export const IMAGE = {
   AVATAR: avatar,
@@ -16,4 +18,6 @@ export const IMAGE = {
   LOGO_GITHUB: github,
   LOGO_INSTAGRAM: instagram,
   LOGO_TWITTER: twitter,
+  PREV_ARROW: prevArrow,
+  NEXT_ARROW: nextArrow,
 };
