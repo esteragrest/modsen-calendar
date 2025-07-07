@@ -1,4 +1,4 @@
-@import "../../../../../../styles/variables.scss";
+@use "@/styles/variables.scss" as var;
 
 .social-link-item {
   width: 28px;
@@ -8,7 +8,7 @@
   align-items: center;
   background-color: #fff;
   border: 1px solid #00000020;
-  border-radius: $radius-lg;
+  border-radius: var.$radius-lg;
   transition:
     background-color 0.3s ease,
     border 0.3s ease;

@@ -1,13 +1,14 @@
 import PropTypes from "prop-types";
 
+import { addDays, formatDayHeader, getStartOfWeek } from "@/helpers";
+
 import styles from "./calendar-grid.module.scss";
-import { addDays, formatDayHeader, getStartOfWeek } from "./utils";
 
 export const CalendarGrid = ({
   view = "week",
   date = new Date(),
-  startHour = 9,
-  endHour = 20,
+  startHour = 0,
+  endHour = 23,
 }) => {
   const hours = [];
   for (let h = startHour; h <= endHour; h++) {

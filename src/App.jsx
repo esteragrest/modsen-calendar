@@ -1,4 +1,5 @@
-import { Header, Sidebar } from "./components";
+import { Header } from "@/components/Header/Header";
+import { Sidebar } from "@/components/Sidebar/Sidebar";
 
 export const App = () => {
   return (

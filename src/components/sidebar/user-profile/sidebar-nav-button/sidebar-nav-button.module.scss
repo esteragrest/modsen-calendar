@@ -1,4 +1,4 @@
-@import "../../../../../styles/variables.scss";
+@use "@/styles/variables.scss" as var;
 
 .sidebar-nav-button-container {
   position: relative;
@@ -9,8 +9,9 @@
   height: 140px;
   background-color: #fff;
   border-radius: 15px;
-  box-shadow: 0 4px 12px $color-shadow;
+  box-shadow: 0 4px 12px var.$color-shadow;
   transition: transform 0.3s ease;
+  cursor: pointer;
 }
 
 .sidebar-nav-button-container:hover {
@@ -22,11 +23,11 @@
   display: block;
   width: 7px;
   height: 7px;
-  border-radius: $radius-lg;
-  background-color: $color-timeline;
+  border-radius: var.$radius-lg;
+  background-color: var.$color-timeline;
   top: 20px;
   right: 20px;
-  box-shadow: 0 10px 30px $color-timeline;
+  box-shadow: 0 10px 30px var.$color-timeline;
 }
 
 .calendars {
@@ -38,6 +39,6 @@
 }
 
 .calendars p {
-  font-size: $font-size-sm;
+  font-size: var.$font-size-sm;
   font-weight: bold;
 }

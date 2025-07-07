@@ -1,7 +1,7 @@
 @use "../../styles/variables.scss" as var;
 
 $week-days: 7;
-$hour-rows: 12;
+$hour-rows: 24;
 
 $week-group: $week-days + 1;
 $day-group: 2;
@@ -48,7 +48,7 @@ $day-group: 2;
   font-weight: bold;
 
   &:first-child {
-    background: url("/img/clock.svg") no-repeat center;
+    background: url("@/assets/clock.svg") no-repeat center;
     background-size: 16px 16px;
   }
 }
