@@ -19,7 +19,7 @@ export const CalendarButton = ({
   );
 };
 
-CalendarButton.propType = {
+CalendarButton.propTypes = {
   type: PropTypes.oneOf(["primary, arrow, view-week, view-day"]),
   onClick: PropTypes.func.isRequired,
   disabled: PropTypes.bool,

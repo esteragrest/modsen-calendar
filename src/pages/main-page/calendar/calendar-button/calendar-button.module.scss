@@ -21,7 +21,7 @@
 }
 
 .calendar-button--primary {
-  border-radius: var.$radius-sm;
+  border-radius: var.$radius-md;
 }
 
 .calendar-button--arrow {
@@ -36,13 +36,13 @@
 
 .calendar-button--view-week {
   border-right: none;
-  border-top-left-radius: var.$radius-sm;
-  border-bottom-left-radius: var.$radius-sm;
+  border-top-left-radius: var.$radius-md;
+  border-bottom-left-radius: var.$radius-md;
   padding: 10px 15px;
 }
 
 .calendar-button--view-day {
-  border-top-right-radius: var.$radius-sm;
-  border-bottom-right-radius: var.$radius-sm;
+  border-top-right-radius: var.$radius-md;
+  border-bottom-right-radius: var.$radius-md;
   padding: 10px 15px;
 }

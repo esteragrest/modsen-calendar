@@ -20,7 +20,7 @@ export const UserProfile = ({ avatar, name, email }) => {
   );
 };
 
-UserProfile.propType = {
+UserProfile.propTypes = {
   avatar: PropTypes.string,
   name: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,

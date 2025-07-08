@@ -1,0 +1,27 @@
+@use "@/styles/variables.scss" as var;
+
+.event-form-button {
+  border: none;
+  background-color: #f5f5fa;
+  padding: 10px 40px;
+  box-shadow: 10px 10px 20px #aaaacc7e;
+  font-weight: bold;
+  border-radius: var.$radius-md;
+  margin-top: 10px;
+}
+
+.event-form-button:hover {
+  background-color: #f5f5fa88;
+}
+
+.event-form-button:disabled {
+  color: #ccd1d2;
+}
+
+.save {
+  color: #7878ab;
+}
+
+.delete {
+  color: #ab7878;
+}

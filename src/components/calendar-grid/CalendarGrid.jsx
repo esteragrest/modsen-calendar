@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import { addDays, formatDayHeader, getStartOfWeek } from "@/helpers";
 
+import { EventForm } from "../event-form/EventForm";
 import styles from "./calendar-grid.module.scss";
 
 export const CalendarGrid = ({
