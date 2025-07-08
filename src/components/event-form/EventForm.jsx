@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
 import { EVENT_COLOR } from "@/constants/event-color";
 import { DATE_RE, MAX_LENGTH, TIME_RE } from "@/constants/event-validation";
 import { IMAGE } from "@/constants/image";
+import { UPDATE_RELOAD_FLAG } from "@/store/actions/update-reload-flag";
 
 import { EventColorSelect } from "./event-color-select/EventColorSelect";
 import styles from "./event-form.module.scss";
@@ -20,6 +22,7 @@ export const EventForm = ({ coords }) => {
   });
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
+  const dispatch = useDispatch();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -63,6 +66,7 @@ export const EventForm = ({ coords }) => {
 
     localStorage.setItem("events", JSON.stringify([...events, form]));
 
+    dispatch(UPDATE_RELOAD_FLAG);
     setForm({
       name: "",
       location: "",

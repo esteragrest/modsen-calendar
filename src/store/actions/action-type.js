@@ -1,0 +1,3 @@
+export const ACTION_TYPE = {
+  UPDATE_RELOAD_FLAG: "UPDATE_RELOAD_FLAG",
+};

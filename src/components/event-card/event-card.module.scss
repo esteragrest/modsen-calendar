@@ -1,0 +1,22 @@
+@use "@/styles/variables.scss" as var;
+
+.event-block {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  padding: 10px;
+  color: #4d5e80;
+  border-radius: var.$radius-xs;
+  font-size: var.$font-size-xs;
+  overflow: hidden;
+  gap: 12px;
+
+  .event-title {
+    font-weight: bold;
+  }
+}
+
+.event-time {
+  display: flex;
+  gap: 7px;
+}
