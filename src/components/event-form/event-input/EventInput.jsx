@@ -9,6 +9,8 @@ export const EventInput = ({
   placeholder,
   border,
   icon,
+  value,
+  setValue,
   ...props
 }) => {
   return (
@@ -25,6 +27,8 @@ export const EventInput = ({
         type={type}
         name={name}
         placeholder={placeholder}
+        value={value}
+        onChange={setValue}
         {...props}
       ></input>
     </div>
@@ -37,4 +41,6 @@ EventInput.propTypes = {
   placeholder: PropTypes.string.isRequired,
   border: PropTypes.bool,
   icon: PropTypes.string,
+  value: PropTypes.string.isRequired,
+  setValue: PropTypes.func.isRequired,
 };

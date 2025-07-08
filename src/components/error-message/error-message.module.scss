@@ -1,0 +1,6 @@
+@use "@/styles/variables.scss" as var;
+
+.error-message {
+  font-size: var.$font-size-sm;
+  color: #ff0c3e;
+}

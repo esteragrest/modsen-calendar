@@ -1,6 +1,7 @@
 @use "@/styles/variables.scss" as var;
 
 .event-form-container {
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
