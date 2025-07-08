@@ -93,6 +93,21 @@ export const EventForm = ({ coords, event }) => {
     });
   };
 
+  const handleDeleteEvent = (e) => {
+    e.preventDefault();
+
+    const eventsJSON = localStorage.getItem("events");
+    const events = JSON.parse(eventsJSON);
+
+    const filteredEvents = events.filter(
+      (eventsItem) => eventsItem.id !== event.id,
+    );
+
+    localStorage.setItem("events", JSON.stringify(filteredEvents));
+
+    dispatch(UPDATE_RELOAD_FLAG);
+  };
+
   return (
     <form
       className={styles["event-form-container"]}
@@ -153,10 +168,16 @@ export const EventForm = ({ coords, event }) => {
         setValue={handleChange}
         error={errors.notes}
       />
-
-      <EventFormButton onClick={handleSubmit} type="save" disabled={!isValid}>
-        Save
-      </EventFormButton>
+      <div className={styles["event-form-buttons"]}>
+        <EventFormButton onClick={handleSubmit} type="save" disabled={!isValid}>
+          Save
+        </EventFormButton>
+        {event && (
+          <EventFormButton onClick={handleDeleteEvent} type="delete">
+            Delete
+          </EventFormButton>
+        )}
+      </div>
     </form>
   );
 };
