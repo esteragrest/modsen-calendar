@@ -1,0 +1,44 @@
+@use "@/styles/variables.scss" as var;
+
+.sidebar-nav-button-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 140px;
+  height: 140px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px var.$color-shadow;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.sidebar-nav-button-container:hover {
+  transform: translateY(-10px);
+}
+
+.status {
+  position: absolute;
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: var.$radius-lg;
+  background-color: var.$color-timeline;
+  top: 20px;
+  right: 20px;
+  box-shadow: 0 10px 30px var.$color-timeline;
+}
+
+.calendars {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.calendars p {
+  font-size: var.$font-size-sm;
+  font-weight: bold;
+}

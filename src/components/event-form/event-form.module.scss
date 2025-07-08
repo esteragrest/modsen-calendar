@@ -1,0 +1,45 @@
+@use "@/styles/variables.scss" as var;
+
+.event-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 440px;
+  height: auto;
+  background-color: #fff;
+  border-radius: var.$radius-sm;
+  padding-bottom: 6px;
+}
+
+.search-event-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top-right-radius: var.$radius-sm;
+  padding: 27px 25px 27px 0px;
+}
+
+.event-timing {
+  position: relative;
+  width: 100%;
+  display: flex;
+
+  &::before,
+  &::after {
+    content: "";
+    width: 2px;
+    height: 100%;
+    background-color: var.$color-border;
+    position: absolute;
+  }
+
+  &::before {
+    left: 0;
+  }
+
+  &::after {
+    left: 50%;
+  }
+}

@@ -1,10 +1,5 @@
-import { Header, Sidebar } from "./components";
+import { MainPage } from "./pages/main-page/MainPage";
 
 export const App = () => {
-  return (
-    <>
-      <Header />
-      <Sidebar />
-    </>
-  );
+  return <MainPage />;
 };

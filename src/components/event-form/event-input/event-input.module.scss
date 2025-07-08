@@ -1,0 +1,38 @@
+@use "@/styles/variables.scss" as var;
+
+.event-input-container {
+  display: flex;
+  width: 100%;
+  justify-content: start;
+  align-items: center;
+  flex-direction: row;
+  background-color: #fff;
+  padding-left: 20px;
+
+  &.border {
+    border-bottom: 1px solid var.$color-border;
+    border-top: 1px solid var.$color-border;
+    padding-left: 15px;
+  }
+}
+
+.event-input {
+  width: 100%;
+  background-color: #fff;
+  font-size: var.$font-size-sm;
+  color: var.$color-text-event;
+  padding: 20px;
+  padding-left: 5px;
+  border: none;
+  font-weight: bold;
+}
+
+.event-input::placeholder {
+  color: var.$color-text-event;
+  font-size: var.$font-size-sm;
+  font-weight: bold;
+}
+
+.event-input:focus {
+  outline: none;
+}
