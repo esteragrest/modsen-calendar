@@ -11,7 +11,7 @@ import styles from "./calendar-grid.module.scss";
 
 export const CalendarGrid = ({ view = "week", date = new Date() }) => {
   const [now, setNow] = useState(new Date());
-  const [menuPos, setMenuPos] = useState(null);
+  const [menu, setMenu] = useState({ pos: null, event: null });
   const events = useWeekEvents(view, date);
   const days = getVisibleDays(view, date);
   const { startHour, endHour } = CALENDAR_CONFIG.time;
@@ -28,9 +28,18 @@ export const CalendarGrid = ({ view = "week", date = new Date() }) => {
 
   const handleCellClick = (event) => {
     event.stopPropagation();
-    setMenuPos((prev) =>
-      prev ? null : { x: event.clientX, y: event.clientY },
-    );
+    setMenu((prev) => ({
+      pos: prev.pos ? null : { x: event.clientX, y: event.clientY },
+      event: null,
+    }));
+  };
+
+  const handleEventClick = (e, event) => {
+    e.stopPropagation();
+    setMenu({
+      pos: { x: e.clientX, y: e.clientY },
+      event: event,
+    });
   };
 
   const hours = [];
@@ -65,9 +74,21 @@ export const CalendarGrid = ({ view = "week", date = new Date() }) => {
       ])}
       <div className={styles["now-line"]} style={{ top: `${lineTop}px` }}></div>
       {events.map((event, index) => {
-        return <EventCard key={index} event={event} view={view} />;
+        return (
+          <EventCard
+            key={index}
+            event={event}
+            view={view}
+            onClick={(e) => handleEventClick(e, event)}
+          />
+        );
       })}
-      {menuPos && <EventForm coords={{ left: menuPos.x, top: menuPos.y }} />}
+      {menu.pos && (
+        <EventForm
+          coords={{ left: menu.pos.x, top: menu.pos.y }}
+          event={menu.event}
+        />
+      )}
     </div>
   );
 };

@@ -11,7 +11,7 @@ import styles from "./event-form.module.scss";
 import { EventFormButton } from "./event-form-button/EventFormButton";
 import { EventInput } from "./event-input/EventInput";
 
-export const EventForm = ({ coords }) => {
+export const EventForm = ({ coords, event }) => {
   const [form, setForm] = useState({
     name: "",
     location: "",
@@ -23,6 +23,12 @@ export const EventForm = ({ coords }) => {
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (event) {
+      setForm(event);
+    }
+  }, [event]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -57,14 +63,24 @@ export const EventForm = ({ coords }) => {
     setIsValid(Object.keys(newErrors).length === 0);
   }, [form]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (!isValid) return;
 
     const eventsJSON = localStorage.getItem("events");
     const events = eventsJSON ? JSON.parse(eventsJSON) : [];
 
-    localStorage.setItem("events", JSON.stringify([...events, form]));
+    if (event) {
+      const updatedEvents = events.map((eventsItem) =>
+        eventsItem.id === event.id ? { ...form, id: event.id } : eventsItem,
+      );
+      localStorage.setItem("events", JSON.stringify(updatedEvents));
+    } else {
+      localStorage.setItem(
+        "events",
+        JSON.stringify([...events, { ...form, id: Date.now() }]),
+      );
+    }
 
     dispatch(UPDATE_RELOAD_FLAG);
     setForm({

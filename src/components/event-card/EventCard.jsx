@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import { CALENDAR_CONFIG } from "@/constants/calendar-config";
 import { parseDate } from "@/helpers/parse-date";
 import { parseTimeRange } from "@/helpers/parse-time-range";
@@ -5,7 +7,7 @@ import { parseTimeRange } from "@/helpers/parse-time-range";
 import { Bridge } from "./bridge/Bridge";
 import styles from "./event-card.module.scss";
 
-export const EventCard = ({ event, view }) => {
+export const EventCard = ({ event, view, onClick }) => {
   const rowHeight = CALENDAR_CONFIG.grid.rowHeight;
   const dayCount = view === "week" ? 7 : 1;
   const dayWidth = `calc((100% - ${rowHeight}px) / ${dayCount})`;
@@ -33,6 +35,7 @@ export const EventCard = ({ event, view }) => {
         backgroundColor: `${event.color.hex}0D`,
         border: `2px solid ${event.color.hex}`,
       }}
+      onClick={onClick}
     >
       <div className={styles["event-time"]}>
         <Bridge bgColor={event.color.hex}>{eventStart}</Bridge>
@@ -43,4 +46,10 @@ export const EventCard = ({ event, view }) => {
       <p className={styles["event-title"]}>{event.name}</p>
     </div>
   );
+};
+
+EventCard.propTypes = {
+  event: PropTypes.object.isRequired,
+  view: PropTypes.oneOf(["week", "day"]).isRequired,
+  onClick: PropTypes.func.isRequired,
 };
