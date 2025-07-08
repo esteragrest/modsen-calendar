@@ -5,15 +5,16 @@ import { IMAGE } from "@/constants/image";
 
 import styles from "./event-color-select.module.scss";
 
-export const EventColorSelect = () => {
+export const EventColorSelect = ({ selected, onSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(EVENT_COLOR[0]);
+  const [selectedOption, setSelectedOption] = useState(selected);
 
   const handleOpenMenu = () => {
     setIsOpen(!isOpen);
   };
 
   const selectOption = (color) => {
+    onSelect(color);
     setSelectedOption(color);
     setIsOpen(false);
   };

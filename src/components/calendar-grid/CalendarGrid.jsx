@@ -13,6 +13,7 @@ export const CalendarGrid = ({
   endHour = 23,
 }) => {
   const [now, setNow] = useState(new Date());
+  const [menuPos, setMenuPos] = useState(null);
 
   const currentMinutes = now.getHours() * 60 + now.getMinutes();
   const rowHeight = 68;
@@ -40,6 +41,19 @@ export const CalendarGrid = ({
     return () => clearInterval(timer);
   }, []);
 
+  const handleCellClick = (event) => {
+    event.stopPropagation();
+
+    if (menuPos) {
+      setMenuPos(null);
+    } else {
+      setMenuPos({
+        x: event.clientX,
+        y: event.clientY,
+      });
+    }
+  };
+
   return (
     <div
       className={view === "day" ? `${styles.grid} ${styles.day}` : styles.grid}
@@ -55,10 +69,15 @@ export const CalendarGrid = ({
           {hour < 10 ? `0${hour}` : `${hour}`}
         </div>,
         ...days.map((day, col) => (
-          <div key={`cell-${row}-${col}`} className={styles.cell}></div>
+          <div
+            key={`cell-${row}-${col}`}
+            className={styles.cell}
+            onClick={handleCellClick}
+          ></div>
         )),
       ])}
       <div className={styles["now-line"]} style={{ top: `${lineTop}px` }}></div>
+      {menuPos && <EventForm coords={{ left: menuPos.x, top: menuPos.y }} />}
     </div>
   );
 };
