@@ -1,1 +1,1 @@
-export const selectReloadFlag = (state) => state.reloadFlag;
+export const selectReloadFlag = ({ app }) => app.reloadFlag;

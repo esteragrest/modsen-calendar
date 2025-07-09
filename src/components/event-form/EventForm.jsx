@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 
 import { IMAGE } from "@/constants/image";
 import { initialFormState } from "@/constants/initial-event-form-state";
+import { openModal } from "@/store/actions/open-modal";
 import { UPDATE_RELOAD_FLAG } from "@/store/actions/update-reload-flag";
 import { updateEventList } from "@/utils/update-event-list";
 import { eventFormValidation } from "@/validations/event-form-validation";
@@ -50,22 +51,6 @@ export const EventForm = ({ coords, event, onCloseForm }) => {
 
     dispatch(UPDATE_RELOAD_FLAG);
     setForm(initialFormState);
-    onCloseForm();
-  };
-
-  const handleDeleteEvent = (e) => {
-    e.preventDefault();
-
-    const eventsJSON = localStorage.getItem("events");
-    const events = JSON.parse(eventsJSON);
-
-    const filteredEvents = events.filter(
-      (eventsItem) => eventsItem.id !== event.id,
-    );
-
-    localStorage.setItem("events", JSON.stringify(filteredEvents));
-
-    dispatch(UPDATE_RELOAD_FLAG);
     onCloseForm();
   };
 
@@ -133,7 +118,10 @@ export const EventForm = ({ coords, event, onCloseForm }) => {
           Save
         </EventFormButton>
         {event && (
-          <EventFormButton onClick={handleDeleteEvent} type="delete">
+          <EventFormButton
+            onClick={() => dispatch(openModal(event.id))}
+            type="delete"
+          >
             Delete
           </EventFormButton>
         )}

@@ -1,5 +1,11 @@
-import { createStore } from "redux";
+import { combineReducers, createStore } from "redux";
 
 import { appReducer } from "./reducers/app-reducer";
+import { modalReducer } from "./reducers/modal-reducer";
 
-export const store = createStore(appReducer);
+const reducer = combineReducers({
+  app: appReducer,
+  modal: modalReducer,
+});
+
+export const store = createStore(reducer);
