@@ -1,25 +1,31 @@
+import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
-import { EVENT_COLOR } from "@/constants/event-color";
-import { DATE_RE, MAX_LENGTH, TIME_RE } from "@/constants/event-validation";
 import { IMAGE } from "@/constants/image";
+import { initialFormState } from "@/constants/initial-event-form-state";
+import { openModal } from "@/store/actions/open-modal";
+import { UPDATE_RELOAD_FLAG } from "@/store/actions/update-reload-flag";
+import { updateEventList } from "@/utils/update-event-list";
+import { eventFormValidation } from "@/validations/event-form-validation";
 
+import { ErrorMessage } from "../error-message/ErrorMessage";
 import { EventColorSelect } from "./event-color-select/EventColorSelect";
 import styles from "./event-form.module.scss";
 import { EventFormButton } from "./event-form-button/EventFormButton";
 import { EventInput } from "./event-input/EventInput";
 
-export const EventForm = ({ coords }) => {
-  const [form, setForm] = useState({
-    name: "",
-    location: "",
-    date: "",
-    time: "",
-    notes: "",
-    color: EVENT_COLOR[0],
-  });
+export const EventForm = ({ coords, event, onCloseForm }) => {
+  const [form, setForm] = useState(initialFormState);
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (event) {
+      setForm(event);
+    }
+  }, [event]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -31,46 +37,21 @@ export const EventForm = ({ coords }) => {
   };
 
   useEffect(() => {
-    const newErrors = {};
-
-    for (const key of ["name", "location", "date", "time"]) {
-      const val = form[key].trim();
-      if (!val) {
-        newErrors[key] = "Обязательное поле";
-      } else if (val.length > MAX_LENGTH) {
-        newErrors[key] = `Максимум ${MAX_LENGTH} символов`;
-      }
-    }
-
-    if (form.date && !DATE_RE.test(form.date.trim())) {
-      newErrors.date = "Формат: ДД.ММ.ГГГГ.";
-    }
-
-    if (form.time && !TIME_RE.test(form.time.trim())) {
-      newErrors.time = "Формат: ЧЧ:ММ-ЧЧ:ММ";
-    }
+    const newErrors = eventFormValidation(form);
 
     setErrors(newErrors);
     setIsValid(Object.keys(newErrors).length === 0);
   }, [form]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (!isValid) return;
 
-    const eventsJSON = localStorage.getItem("events");
-    const events = eventsJSON ? JSON.parse(eventsJSON) : [];
+    updateEventList(form, event);
 
-    localStorage.setItem("events", JSON.stringify([...events, form]));
-
-    setForm({
-      name: "",
-      location: "",
-      date: "",
-      time: "",
-      notes: "",
-      color: EVENT_COLOR[0],
-    });
+    dispatch(UPDATE_RELOAD_FLAG);
+    setForm(initialFormState);
+    onCloseForm();
   };
 
   return (
@@ -98,7 +79,6 @@ export const EventForm = ({ coords }) => {
         icon={IMAGE.LOCATION_ICON}
         value={form.location}
         setValue={handleChange}
-        error={errors.location}
       />
 
       <div className={styles["event-timing"]}>
@@ -110,7 +90,6 @@ export const EventForm = ({ coords }) => {
           icon={IMAGE.DATE_ICON}
           value={form.date}
           setValue={handleChange}
-          error={errors.date}
         />
         <EventInput
           type="text"
@@ -120,7 +99,6 @@ export const EventForm = ({ coords }) => {
           icon={IMAGE.CLOCK}
           value={form.time}
           setValue={handleChange}
-          error={errors.time}
         />
       </div>
       <EventInput
@@ -131,12 +109,29 @@ export const EventForm = ({ coords }) => {
         icon={IMAGE.NOTES_ICON}
         value={form.notes}
         setValue={handleChange}
-        error={errors.notes}
       />
-
-      <EventFormButton onClick={handleSubmit} type="save" disabled={!isValid}>
-        Save
-      </EventFormButton>
+      {Object.keys(errors).length > 0 && (
+        <ErrorMessage>{Object.values(errors)[0]}</ErrorMessage>
+      )}
+      <div className={styles["event-form-buttons"]}>
+        <EventFormButton onClick={handleSubmit} type="save" disabled={!isValid}>
+          Save
+        </EventFormButton>
+        {event && (
+          <EventFormButton
+            onClick={() => dispatch(openModal(event.id))}
+            type="delete"
+          >
+            Delete
+          </EventFormButton>
+        )}
+      </div>
     </form>
   );
+};
+
+EventForm.propTypes = {
+  coords: PropTypes.object.isRequired,
+  event: PropTypes.object,
+  onCloseForm: PropTypes.func.isRequired,
 };

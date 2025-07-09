@@ -1,0 +1,13 @@
+@use "@/styles/variables.scss" as var;
+
+.bridge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 20px;
+  border-radius: var.$radius-xs;
+  font-size: var.$font-size-xs;
+  color: #ffff;
+  padding: 7px;
+}

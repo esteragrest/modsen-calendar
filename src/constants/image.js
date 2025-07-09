@@ -1,6 +1,8 @@
 import avatar from "@/assets/avatar.svg";
 import calendar from "@/assets/calendar.svg";
+import checkMark from "@/assets/check-mark.svg";
 import clock from "@/assets/clock.svg";
+import cross from "@/assets/cross.svg";
 import date from "@/assets/date.svg";
 import location from "@/assets/location.svg";
 import logo from "@/assets/logo.svg";
@@ -28,4 +30,6 @@ export const IMAGE = {
   DATE_ICON: date,
   NOTES_ICON: notes,
   SELECT_ICON: selectIcon,
+  CROSS: cross,
+  CHECK_MARK: checkMark,
 };

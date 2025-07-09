@@ -1,5 +1,5 @@
-import { addDays } from "./add-days";
-import { getStartOfWeek } from "./get-start-of-week";
+import { addDays } from "../utils/add-days";
+import { getStartOfWeek } from "../utils/get-start-of-week";
 
 export function getPreviousDate(view, date) {
   return view === "week"
