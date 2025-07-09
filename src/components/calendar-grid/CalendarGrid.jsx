@@ -73,10 +73,10 @@ export const CalendarGrid = ({ view = "week", date = new Date() }) => {
         )),
       ])}
       <div className={styles["now-line"]} style={{ top: `${lineTop}px` }}></div>
-      {events.map((event, index) => {
+      {events.map((event) => {
         return (
           <EventCard
-            key={index}
+            key={event.id}
             event={event}
             view={view}
             onClick={(e) => handleEventClick(e, event)}
@@ -87,6 +87,7 @@ export const CalendarGrid = ({ view = "week", date = new Date() }) => {
         <EventForm
           coords={{ left: menu.pos.x, top: menu.pos.y }}
           event={menu.event}
+          onCloseForm={() => setMenu({ pos: null, event: null })}
         />
       )}
     </div>

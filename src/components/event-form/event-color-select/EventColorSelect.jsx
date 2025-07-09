@@ -7,15 +7,14 @@ import styles from "./event-color-select.module.scss";
 
 export const EventColorSelect = ({ selected, onSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(selected);
 
-  const handleOpenMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  const selectedOption =
+    EVENT_COLOR.find((color) => color.id === selected?.id) || EVENT_COLOR[0];
+
+  const handleOpenMenu = () => setIsOpen(!isOpen);
 
   const selectOption = (color) => {
     onSelect(color);
-    setSelectedOption(color);
     setIsOpen(false);
   };
 

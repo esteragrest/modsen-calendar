@@ -30,7 +30,7 @@ export const EventInput = ({
         value={value}
         onChange={setValue}
         {...props}
-      ></input>
+      />
     </div>
   );
 };
