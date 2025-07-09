@@ -1,0 +1,31 @@
+@use "@/styles/variables.scss" as var;
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 29px;
+  background-color: var.$color-calendar;
+  border: 2px solid var.$color-border;
+  border-bottom: none;
+  border-top-left-radius: var.$radius-md;
+  border-top-right-radius: var.$radius-md;
+  box-shadow: 0 2px 4px var.$color-shadow;
+}
+
+.calendar-header .controls {
+  display: flex;
+  align-items: center;
+  margin-left: 105px;
+}
+
+.calendar-header .period-label {
+  font-weight: bold;
+  font-size: var.$font-size-sm;
+  padding: 0 34px;
+}
+
+.calendar-header .actions {
+  display: flex;
+  align-items: center;
+}

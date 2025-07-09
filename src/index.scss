@@ -1,4 +1,4 @@
-@import "./styles/variables.scss";
+@use "./styles/variables.scss" as var;
 @import url("https://fonts.googleapis.com/css2?family=Alumni+Sans+SC:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
 * {
@@ -20,6 +20,8 @@
 body {
   margin: 0;
   display: flex;
-  background-color: $color-background;
-  color: $color-text;
+  width: 100%;
+  height: 100%;
+  background-color: var.$color-background;
+  color: var.$color-text;
 }

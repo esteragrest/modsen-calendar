@@ -1,0 +1,78 @@
+@use "@/styles/variables.scss" as var;
+
+.user-profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  gap: 35px;
+}
+
+.avatar-container {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  padding: 10px;
+  align-items: center;
+  z-index: 0;
+  background-color: var.$color-background;
+  box-shadow: 0 4px 12px var.$color-shadow;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    padding: 3px;
+    background: conic-gradient(
+      var.$color-text-transparent 0deg 90deg,
+      #3361ff 90deg 360deg
+    );
+    -webkit-mask: radial-gradient(
+      farthest-side,
+      transparent calc(100% - 3px),
+      black 100%
+    );
+    mask: radial-gradient(
+      farthest-side,
+      transparent calc(100% - 3px),
+      black 100%
+    );
+    z-index: -1;
+  }
+}
+
+.avatar {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.user-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: var.$space-xs;
+}
+
+.user-info .name {
+  font-weight: bold;
+}
+
+.user-info .email {
+  color: var.$color-text-transparent;
+  font-weight: bold;
+}

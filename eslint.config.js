@@ -33,5 +33,13 @@ export default [
       "simple-import-sort/imports": "error",
       "simple-import-sort/exports": "error",
     },
+    settings: {
+      "import/resolver": {
+        alias: {
+          map: [["@", "./src"]],
+          extensions: [".js", ".jsx"],
+        },
+      },
+    },
   },
 ];
