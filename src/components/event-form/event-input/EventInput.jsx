@@ -27,6 +27,7 @@ export const EventInput = ({
         type={type}
         name={name}
         placeholder={placeholder}
+        autoComplete="off"
         value={value}
         onChange={setValue}
         {...props}

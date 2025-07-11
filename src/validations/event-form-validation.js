@@ -1,4 +1,4 @@
-import { DATE_RE, MAX_LENGTH, TIME_RE } from "@/constants/event-validation";
+import { DATE_RE, MAX_LENGTH, TIME_RE } from "@/constants";
 
 export const eventFormValidation = (form) => {
   const errors = {};

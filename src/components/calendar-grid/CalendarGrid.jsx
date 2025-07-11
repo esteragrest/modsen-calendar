@@ -1,40 +1,35 @@
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { CALENDAR_CONFIG } from "@/constants/calendar-config";
-import { formatDayHeader } from "@/helpers";
-import { formatDate } from "@/helpers/format-date";
-import { formatTimeRange } from "@/helpers/format-time-range";
-import { getDurationInMinutes } from "@/helpers/get-duration-in-minutes";
-import { getStartMinutes } from "@/helpers/get-start-minutes";
-import { useWeekEvents } from "@/hooks/use-week-events";
-import { UPDATE_RELOAD_FLAG } from "@/store/actions/update-reload-flag";
-import { getVisibleDays } from "@/utils/get-visible-days";
-import { updateEventList } from "@/utils/update-event-list";
+import { CALENDAR_CONFIG } from "@/constants";
+import {
+  formatDate,
+  formatDayHeader,
+  formatTimeRange,
+  getDurationInMinutes,
+  getStartMinutes,
+} from "@/helpers";
+import { useNowLine, useWeekEvents } from "@/hooks";
+import { UPDATE_RELOAD_FLAG } from "@/store/actions";
+import { getVisibleDays, updateEventList } from "@/utils";
 
 import { EventCard } from "../event-card/EventCard";
 import { EventForm } from "../event-form/EventForm";
 import styles from "./calendar-grid.module.scss";
 import { DroppableCell } from "./droppable-cell/DroppableCell";
 
-export const CalendarGrid = ({ view = "week", date = new Date() }) => {
-  const [now, setNow] = useState(new Date());
+export const CalendarGrid = ({
+  view = CALENDAR_CONFIG.viewMode.week,
+  date = new Date(),
+}) => {
   const [menu, setMenu] = useState({ pos: null, event: null });
   const events = useWeekEvents(view, date);
   const days = getVisibleDays(view, date);
-  const { startHour, endHour } = CALENDAR_CONFIG.time;
   const dispatch = useDispatch();
 
-  const rowHeight = CALENDAR_CONFIG.grid.rowHeight;
-  const currentMinutes = now.getHours() * 60 + now.getMinutes();
-  const offsetTop = currentMinutes * (rowHeight / 60);
-  const lineTop = rowHeight + offsetTop;
-
-  useEffect(() => {
-    const timer = setInterval(() => setNow(new Date()), 60 * 1000);
-    return () => clearInterval(timer);
-  }, []);
+  const { startHour, endHour } = CALENDAR_CONFIG.time;
+  const { lineTop } = useNowLine();
 
   const handleCellClick = (event) => {
     event.stopPropagation();
@@ -59,9 +54,9 @@ export const CalendarGrid = ({ view = "week", date = new Date() }) => {
 
     const duration = getDurationInMinutes(originalEvent.time);
     const originalStart = getStartMinutes(originalEvent.time);
-    const minuteOffset = originalStart % 60;
+    const minuteOffset = originalStart % CALENDAR_CONFIG.time.minutes;
 
-    const newStart = hour * 60 + minuteOffset;
+    const newStart = hour * CALENDAR_CONFIG.time.minutes + minuteOffset;
     const newDate = formatDate(day);
     const newTime = formatTimeRange(newStart, duration);
 
@@ -82,7 +77,11 @@ export const CalendarGrid = ({ view = "week", date = new Date() }) => {
 
   return (
     <div
-      className={view === "day" ? `${styles.grid} ${styles.day}` : styles.grid}
+      className={
+        view === CALENDAR_CONFIG.viewMode.day
+          ? `${styles.grid} ${styles.day}`
+          : styles.grid
+      }
     >
       <div className={styles["cell-header"]} />
       {days.map((day, i) => (
@@ -104,7 +103,7 @@ export const CalendarGrid = ({ view = "week", date = new Date() }) => {
           />
         )),
       ])}
-      <div className={styles["now-line"]} style={{ top: `${lineTop}px` }}></div>
+      <div className={styles["now-line"]} style={{ top: `${lineTop}px` }} />
       {events.map((event) => (
         <EventCard
           key={event.id}

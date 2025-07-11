@@ -2,11 +2,9 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { IMAGE } from "@/constants/image";
-import { initialFormState } from "@/constants/initial-event-form-state";
-import { openModal } from "@/store/actions/open-modal";
-import { UPDATE_RELOAD_FLAG } from "@/store/actions/update-reload-flag";
-import { updateEventList } from "@/utils/update-event-list";
+import { IMAGE, initialFormState } from "@/constants";
+import { openModal, UPDATE_RELOAD_FLAG } from "@/store/actions";
+import { updateEventList } from "@/utils";
 import { eventFormValidation } from "@/validations/event-form-validation";
 
 import { ErrorMessage } from "../error-message/ErrorMessage";

@@ -1,4 +1,4 @@
-import { IMAGE } from "@/constants/image";
+import { IMAGE } from "@/constants";
 
 export const SOCIAL_LINKS = [
   {
