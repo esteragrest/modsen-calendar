@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 
-import { IMAGE } from "@/constants/image";
+import { CALENDAR_CONFIG, IMAGE } from "@/constants";
 import {
   getNextDate,
   getPeriodDays,
@@ -23,7 +23,7 @@ export const CalendarHeader = ({ view, date, setDate, setView }) => {
   const goToNext = () => setDate((d) => getNextDate(view, d));
 
   const goToToday = () => {
-    setView("day");
+    setView(CALENDAR_CONFIG.viewMode.day);
     setDate(new Date());
   };
 
@@ -34,25 +34,25 @@ export const CalendarHeader = ({ view, date, setDate, setView }) => {
       </CalendarButton>
       <div className={styles.controls}>
         <CalendarButton type="arrow" onClick={goToPrev}>
-          <img src={IMAGE.PREV_ARROW} />
+          <img src={IMAGE.PREV_ARROW} alt="prev-arrow" />
         </CalendarButton>
         <p className={styles["period-label"]}>{periodLabel}</p>
         <CalendarButton type="arrow" onClick={goToNext}>
-          <img src={IMAGE.NEXT_ARROW} />
+          <img src={IMAGE.NEXT_ARROW} alt="next-arrow" />
         </CalendarButton>
       </div>
       <div className={styles.actions}>
         <CalendarButton
           type="view-week"
-          onClick={() => setView("week")}
-          disabled={view === "week"}
+          onClick={() => setView(CALENDAR_CONFIG.viewMode.week)}
+          disabled={view === CALENDAR_CONFIG.viewMode.week}
         >
           Week
         </CalendarButton>
         <CalendarButton
           type="view-day"
-          onClick={() => setView("day")}
-          disabled={view === "day"}
+          onClick={() => setView(CALENDAR_CONFIG.viewMode.day)}
+          disabled={view === CALENDAR_CONFIG.viewMode.day}
         >
           Day
         </CalendarButton>

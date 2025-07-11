@@ -1,9 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { IMAGE } from "@/constants/image";
-import { CLOSE_MODAL } from "@/store/actions/close-modal";
-import { UPDATE_RELOAD_FLAG } from "@/store/actions/update-reload-flag";
-import { selectModal } from "@/store/selectors/select-modal";
+import { IMAGE } from "@/constants";
+import { CLOSE_MODAL, UPDATE_RELOAD_FLAG } from "@/store/actions";
+import { selectModal } from "@/store/selectors";
 
 import styles from "./modal.module.scss";
 

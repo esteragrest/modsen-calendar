@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-import { parseDate } from "@/helpers/parse-date";
-import { selectReloadFlag } from "@/store/selectors/select-reload-flag";
-import { getVisibleDays } from "@/utils/get-visible-days";
+import { parseDate } from "@/helpers";
+import { selectReloadFlag } from "@/store/selectors";
+import { getVisibleDays } from "@/utils";
 
 export function useWeekEvents(view, date) {
   const [events, setEvents] = useState([]);

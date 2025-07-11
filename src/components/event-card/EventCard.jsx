@@ -1,16 +1,15 @@
 import PropTypes from "prop-types";
 import { useDrag } from "react-dnd";
 
-import { CALENDAR_CONFIG } from "@/constants/calendar-config";
-import { parseDate } from "@/helpers/parse-date";
-import { parseTimeRange } from "@/helpers/parse-time-range";
+import { CALENDAR_CONFIG } from "@/constants";
+import { parseDate, parseTimeRange } from "@/helpers";
 
 import { Bridge } from "./bridge/Bridge";
 import styles from "./event-card.module.scss";
 
 export const EventCard = ({ event, view, onClick }) => {
   const rowHeight = CALENDAR_CONFIG.grid.rowHeight;
-  const dayCount = view === "week" ? 7 : 1;
+  const dayCount = view === CALENDAR_CONFIG.viewMode.week ? 7 : 1;
   const dayWidth = `calc((100% - ${rowHeight}px) / ${dayCount})`;
   const [eventStart, eventEnd] = event.time.split("-");
 
@@ -18,11 +17,14 @@ export const EventCard = ({ event, view, onClick }) => {
   const [startMinute, endMinute] = parseTimeRange(event.time);
 
   const jsDay = eventDate.getDay() === 0 ? 6 : eventDate.getDay() - 1;
-  const dayIndex = view === "week" ? jsDay : 0;
+  const dayIndex = view === CALENDAR_CONFIG.viewMode.week ? jsDay : 0;
 
-  const startOffset = startMinute - CALENDAR_CONFIG.time.startHour * 60;
-  const top = rowHeight + startOffset * (rowHeight / 60);
-  const height = (endMinute - startMinute) * (rowHeight / 60);
+  const startOffset =
+    startMinute - CALENDAR_CONFIG.time.startHour * CALENDAR_CONFIG.time.minutes;
+  const top =
+    rowHeight + startOffset * (rowHeight / CALENDAR_CONFIG.time.minutes);
+  const height =
+    (endMinute - startMinute) * (rowHeight / CALENDAR_CONFIG.time.minutes);
 
   const [{ isDragging }, dragRef] = useDrag(() => ({
     type: "EVENT",
