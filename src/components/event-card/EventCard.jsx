@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { useDrag } from "react-dnd";
 
 import { CALENDAR_CONFIG } from "@/constants/calendar-config";
 import { parseDate } from "@/helpers/parse-date";
@@ -16,16 +17,24 @@ export const EventCard = ({ event, view, onClick }) => {
   const eventDate = parseDate(event.date);
   const [startMinute, endMinute] = parseTimeRange(event.time);
 
-  let jsDay = eventDate.getDay();
-  jsDay = jsDay === 0 ? 6 : jsDay - 1;
+  const jsDay = eventDate.getDay() === 0 ? 6 : eventDate.getDay() - 1;
   const dayIndex = view === "week" ? jsDay : 0;
 
   const startOffset = startMinute - CALENDAR_CONFIG.time.startHour * 60;
   const top = rowHeight + startOffset * (rowHeight / 60);
   const height = (endMinute - startMinute) * (rowHeight / 60);
 
+  const [{ isDragging }, dragRef] = useDrag(() => ({
+    type: "EVENT",
+    item: { id: event.id },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  }));
+
   return (
     <div
+      ref={dragRef}
       className={styles["event-block"]}
       style={{
         top: `${top}px`,
@@ -34,6 +43,8 @@ export const EventCard = ({ event, view, onClick }) => {
         width: dayWidth,
         backgroundColor: `${event.color.hex}0D`,
         border: `2px solid ${event.color.hex}`,
+        opacity: isDragging ? 0.6 : 1,
+        cursor: "grab",
       }}
       onClick={onClick}
     >

@@ -85,7 +85,7 @@ export const EventForm = ({ coords, event, onCloseForm }) => {
         <EventInput
           type="text"
           name="date"
-          placeholder="Add Date"
+          placeholder="DD.MM.YYYY"
           border={true}
           icon={IMAGE.DATE_ICON}
           value={form.date}
@@ -94,7 +94,7 @@ export const EventForm = ({ coords, event, onCloseForm }) => {
         <EventInput
           type="text"
           name="time"
-          placeholder="Add Time"
+          placeholder="HH:MM-HH:MM"
           border={true}
           icon={IMAGE.CLOCK}
           value={form.time}
