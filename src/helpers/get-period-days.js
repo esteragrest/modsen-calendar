@@ -1,5 +1,4 @@
-import { addDays } from "../utils/add-days";
-import { getStartOfWeek } from "../utils/get-start-of-week";
+import { addDays, getStartOfWeek } from "../utils";
 
 export const getPeriodDays = (view, date) => {
   if (view === "week") {

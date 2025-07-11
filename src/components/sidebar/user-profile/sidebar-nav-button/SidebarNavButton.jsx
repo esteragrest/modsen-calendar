@@ -1,4 +1,4 @@
-import { IMAGE } from "@/constants/image";
+import { IMAGE } from "@/constants";
 
 import styles from "./sidebar-nav-button.module.scss";
 
@@ -7,7 +7,7 @@ export const SidebarNavButton = () => {
     <div className={styles["sidebar-nav-button-container"]}>
       <div className={styles.status}></div>
       <div className={styles.calendars}>
-        <img src={IMAGE.CALENDAR} alt="" />
+        <img src={IMAGE.CALENDAR} alt="calendar" />
         <p>Calendars</p>
       </div>
     </div>

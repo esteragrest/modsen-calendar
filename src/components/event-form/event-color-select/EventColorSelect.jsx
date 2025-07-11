@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-import { EVENT_COLOR } from "@/constants/event-color";
-import { IMAGE } from "@/constants/image";
+import { EVENT_COLOR, IMAGE } from "@/constants";
 
 import styles from "./event-color-select.module.scss";
 

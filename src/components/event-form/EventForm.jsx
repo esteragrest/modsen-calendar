@@ -2,11 +2,9 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { IMAGE } from "@/constants/image";
-import { initialFormState } from "@/constants/initial-event-form-state";
-import { openModal } from "@/store/actions/open-modal";
-import { UPDATE_RELOAD_FLAG } from "@/store/actions/update-reload-flag";
-import { updateEventList } from "@/utils/update-event-list";
+import { IMAGE, initialFormState } from "@/constants";
+import { openModal, UPDATE_RELOAD_FLAG } from "@/store/actions";
+import { updateEventList } from "@/utils";
 import { eventFormValidation } from "@/validations/event-form-validation";
 
 import { ErrorMessage } from "../error-message/ErrorMessage";
@@ -85,7 +83,7 @@ export const EventForm = ({ coords, event, onCloseForm }) => {
         <EventInput
           type="text"
           name="date"
-          placeholder="Add Date"
+          placeholder="DD.MM.YYYY"
           border={true}
           icon={IMAGE.DATE_ICON}
           value={form.date}
@@ -94,7 +92,7 @@ export const EventForm = ({ coords, event, onCloseForm }) => {
         <EventInput
           type="text"
           name="time"
-          placeholder="Add Time"
+          placeholder="HH:MM-HH:MM"
           border={true}
           icon={IMAGE.CLOCK}
           value={form.time}

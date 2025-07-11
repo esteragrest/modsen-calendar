@@ -1,4 +1,4 @@
-import { IMAGE } from "@/constants/image";
+import { IMAGE } from "@/constants";
 
 import { Footer } from "../footer/Footer";
 import styles from "./sidebar.module.scss";

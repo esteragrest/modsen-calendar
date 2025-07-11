@@ -1,5 +1,4 @@
-import { Header } from "@/components/header/Header";
-import { Sidebar } from "@/components/sidebar/Sidebar";
+import { Header, Sidebar } from "@/components";
 
 import { Calendar } from "./calendar/Calendar";
 import styles from "./main-page.module.scss";

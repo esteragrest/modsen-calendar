@@ -1,7 +1,6 @@
 import { combineReducers, createStore } from "redux";
 
-import { appReducer } from "./reducers/app-reducer";
-import { modalReducer } from "./reducers/modal-reducer";
+import { appReducer, modalReducer } from "./reducers";
 
 const reducer = combineReducers({
   app: appReducer,

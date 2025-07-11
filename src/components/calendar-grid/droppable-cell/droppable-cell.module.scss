@@ -1,0 +1,10 @@
+@use "@/styles/variables.scss" as var;
+
+.cell {
+  background: var.$color-calendar;
+  border: 1px solid var.$color-border;
+}
+
+.over {
+  background: var.$color-border;
+}
